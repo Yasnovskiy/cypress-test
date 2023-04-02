@@ -3,3 +3,5 @@ describe('ComponentName.cy.tsx', () => {
     // cy.mount()
   })
 })
+
+export {} 
