@@ -17,7 +17,7 @@ jobs:
           runTests: false
           build: npm run build
 
-      - run: npx cypress info
+      - run: npm cypress info
       - run: node --version
 
       - name: Save build folder
