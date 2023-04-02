@@ -4,4 +4,4 @@ describe('ComponentName.cy.tsx', () => {
   })
 })
 
-export {} 
+export {}  
