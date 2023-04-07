@@ -39,7 +39,7 @@ jobs:
           name: build
           path: build
 
-      - name: 'UI Tests - Chrome'
+      - name: 'Components test'
         uses: cypress-io/github-action@v5
         with:
           component: true
@@ -50,36 +50,50 @@ jobs:
           # re-enable PR comment bot
           COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
        
-#   e2e-test:
-#     runs-on: ubuntu-latest
-#     container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
-#     needs: install
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v3
+  e2e-test-chrome:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-#       - name: Download the build folders
-#         uses: actions/download-artifact@v3
-#         with:
-#           name: build
-#           path: build
+      - name: Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
 
-#       - name: Cypress E2E Chrome
-#           uses: cypress-io/github-action@v5
-#           with:
-#             browser: chrome
-#           env: 
-#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-#           COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-#           # re-enable PR comment bot
-#           COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+      - name: Cypress E2E Chrome
+          uses: cypress-io/github-action@v5
+          with:
+            browser: chrome
+          env: 
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+          # re-enable PR comment bot
+          COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+          
+  e2e-test-firefox:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-#         - name: Cypress E2E Firefox
-#           uses: cypress-io/github-action@v5
-#           with:
-#             browser: firef
-#           env: 
-#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-#           COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-#           # re-enable PR comment bot
-#           COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+      - name: Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+
+        - name: Cypress E2E Firefox
+          uses: cypress-io/github-action@v5
+          with:
+            browser: firef
+          env: 
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+          # re-enable PR comment bot
+          COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
