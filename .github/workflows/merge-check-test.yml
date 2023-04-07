@@ -6,7 +6,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Cypress run
+
+      - name: Cypress run component
         uses: cypress-io/github-action@v5
         with:
           component: true
+          browser: chrome
+
+      - name: Cypress E2E Chrome
+        uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+
+      - name: Cypress E2E Firefox
+        uses: cypress-io/github-action@v5
+        with:
+          browser: firefox
