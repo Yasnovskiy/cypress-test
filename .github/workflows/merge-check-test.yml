@@ -69,10 +69,9 @@ jobs:
           with:
             browser: chrome
           env: 
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-          # re-enable PR comment bot
-          COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+            COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
           
   e2e-test-firefox:
     runs-on: ubuntu-latest
@@ -93,7 +92,6 @@ jobs:
           with:
             browser: firef
           env: 
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-          # re-enable PR comment bot
-          COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+            COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
