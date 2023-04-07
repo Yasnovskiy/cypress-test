@@ -1,7 +1,34 @@
 name: Component tests
+
 on: push
+
 jobs:
   install:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
+      # options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v5
+        with:
+          runTests: false
+          build: npm run build
+      # report machine parameters
+      - run: node -v'
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: dist
+
+# jobs:
+  # install:
     runs-on: ubuntu-latest
     container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
     steps:
