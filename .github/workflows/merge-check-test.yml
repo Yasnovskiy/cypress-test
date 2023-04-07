@@ -47,7 +47,6 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-          # re-enable PR comment bot
           COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
        
   test-chrome:
@@ -64,14 +63,15 @@ jobs:
           name: build
           path: build
 
-      - name: Cypress E2E Chrome
-          uses: cypress-io/github-action@v5
-          with:
-            browser: chrome
-          env: 
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-            COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-            COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+      - name: 'Components test'
+        uses: cypress-io/github-action@v5
+        with:
+          component: true
+          browser: chrome
+        env: 
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+          COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
           
   # e2e-test-firefox:
   #   runs-on: ubuntu-latest
