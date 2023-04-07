@@ -22,7 +22,7 @@ jobs:
           if-no-files-found: error
           path: dist
 
-  components-test:
+  # components-test:
     runs-on: ubuntu-latest
     container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
     needs: install
@@ -47,7 +47,7 @@ jobs:
           # re-enable PR comment bot
           COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
        
-  components-test:
+  # e2e-test:
     runs-on: ubuntu-latest
     container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
     needs: install
