@@ -17,8 +17,6 @@ jobs:
         with:
           runTests: false
           build: npm run build
-      # report machine parameters
-      - run: node -v'
 
       - name: Save build folder
         uses: actions/upload-artifact@v3
